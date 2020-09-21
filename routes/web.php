@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,26 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home.home');
-});
-
-Route::get('/home', function () {
-    return view('home.home');
-});
-
-Route::get('/how-does-this-work', function () {
-    return view('home.how-does-this-work');
-});
-
-Route::get('/why-do-we-do-this', function () {
-    return view('home.why-do-we-do-this');
-});
-
-Route::get('/other-christmas-fun', function () {
-    return view('home.other-christmas-fun');
-});
-
-Route::get('/send-us-an-email', function () {
-    return view('home.send-us-an-email');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/how-does-this-work', [HomeController::class, 'how_does_this_work']);
+Route::get('/why-do-we-do-this', [HomeController::class, 'why_do_we_de_this']);
+Route::get('/other-christmas-fun', [HomeController::class, 'other_christmas_fun']);
+Route::get('/send-us-an-email', [HomeController::class, 'send_us_an_email']);
