@@ -297,6 +297,7 @@
 
 @endsection
 
+@push('script')
 <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
 <script>
 	var socket = io.connect( 'https://mkelights.com:8080/' );
@@ -319,5 +320,5 @@
 	socket.on('response ready', function(msg) {
 		controlStatusElement.html(msg);
 	});
-
 </script>
+@endpush

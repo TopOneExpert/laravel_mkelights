@@ -68,7 +68,7 @@
       </div>
     </div>
   </body>
-
+  @stack('script')
   <script src="{{ url('js/jquery.min.js') }}" type="text/javascript"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11765413-9"></script>
 
