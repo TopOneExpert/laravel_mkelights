@@ -68,7 +68,6 @@
       </div>
     </div>
   </body>
-
   <script src="{{ url('js/jquery.min.js') }}" type="text/javascript"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11765413-9"></script>
 
@@ -150,4 +149,7 @@
     gtag('js', new Date());
     gtag('config', 'UA-11765413-9');
   </script>
+
+  @stack('script')
+
 </html>
