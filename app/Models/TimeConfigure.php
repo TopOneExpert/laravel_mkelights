@@ -11,6 +11,8 @@ class TimeConfigure extends Model
 
     protected $table = 'tbl_timeconfigure';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id', 'config_type', 'config_value',
     ];

@@ -23,6 +23,9 @@ Route::get('/other-christmas-fun', [HomeController::class, 'other_christmas_fun'
 Route::get('/send-us-an-email', [HomeController::class, 'send_us_an_email']);
 
 Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/system-on-off-time', [AdminController::class, 'system_on_off_time']);
-Route::get('/setting-time-schedule', [AdminController::class, 'setting_time_schedule']);
-Route::get('/view-all-commands', [AdminController::class, 'view-all-commands']);
+Route::get('/admin/system-on-off-time', [AdminController::class, 'system_on_off_time']);
+Route::get('/admin/setting-time-schedule', [AdminController::class, 'setting_time_schedule']);
+Route::get('/admin/view-all-commands', [AdminController::class, 'view_all_commands']);
+
+Route::post('/admin/set-system-onoff-time', [AdminController::class, 'set_system_onoff_time']);
+Route::post('/admin/set-schedule-onoff-time', [AdminController::class, 'set_schedule_onoff_time']);

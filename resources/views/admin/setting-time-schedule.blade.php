@@ -9,14 +9,33 @@
 		<div class="page-text-inner-wrapper">
       <span style="font-weight:bold">Setting All lights On/Off Schedule Time</span>
       <p>The all lights will be turned on or off schedule time.</p>
-        <form action="contact" method="post">
-          <p>
-            <b>On Date/Time:</b> <input type="text" name="on_dt" /><br />
-            <b>Off Date/Time:</b> <input type="text" name="off_dt" /><br />
-          </p>
-          <input type="submit" name='submit' value="Submit">
-        </form>
+      <p>
+        <b>On Date/Time:</b> <input type="text" id="on_dt" value="{{ $schedule_on_time }}" /><br />
+        <b>Off Date/Time:</b> <input type="text" id="off_dt" value="{{ $schedule_off_time }}" /><br />
+      </p>
+      <button id='submit'>Submit</button>
     </div>
 	</div>
 </div>
 @endsection
+
+@push('script')
+<script>
+  $(document).ready(function(){
+    $('#submit').click(function(e){
+      $.ajax({
+        type: 'POST',
+        url: "{{ url('/admin/set-schedule-onoff-time') }}",
+        data: {
+          on_dt: $('#on_dt').val(),
+          off_dt: $('#off_dt').val(),
+          _token: "{{csrf_token()}}",
+        },
+        success: function(result) {          
+          console.log(result);
+        }
+      })
+    });
+  })
+</script>
+@endpush

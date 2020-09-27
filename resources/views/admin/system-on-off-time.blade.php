@@ -9,14 +9,34 @@
 		<div class="page-text-inner-wrapper">
       <span style="font-weight:bold">Setting System On/Off Time</span>
       <p>The system status will be online from on date time to off date time.</p>
-        <form action="contact" method="post">
+          @csrf
           <p>
-            <b>On Date/Time:</b> <input type="text" name="on_dt" /><br />
-            <b>Off Date/Time:</b> <input type="text" name="off_dt" /><br />
+            <b>On Date/Time:</b> <input type="text" id="on_dt" value="{{$start_time}}" /><br />
+            <b>Off Date/Time:</b> <input type="text" id="off_dt" value="{{$end_time}}" /><br />
           </p>
-          <input type="submit" name='submit' value="Submit">
-        </form>
+          <button id='submit'>Submit</button>
     </div>
 	</div>
 </div>
 @endsection
+
+@push('script')
+<script>
+  $(document).ready(function(){
+    $('#submit').click(function(e){
+      $.ajax({
+        type: 'POST',
+        url: "{{ url('/admin/set-system-onoff-time') }}",
+        data: {
+          on_dt: $('#on_dt').val(),
+          off_dt: $('#off_dt').val(),
+          _token: "{{csrf_token()}}",
+        },
+        success: function(result) {          
+          console.log(result);
+        }
+      })
+    });
+  })
+</script>
+@endpush
