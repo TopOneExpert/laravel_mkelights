@@ -9,13 +9,13 @@
 		<div class="page-text-inner-wrapper">
       <span style="font-weight:bold">Setting All lights On/Off Schedule Time</span>
       <p>The all lights will be turned on or off schedule time.</p>
-      <table class="table table-bordered yajra-datatable">
+      <table class="table table-bordered yajra-datatable" id="command_tbl">
         <thead>
           <tr>
-            <th>No</th>
-            <th>Channel</th>
-            <th>Command</th>
-            <th>Date</th>
+            <th>ID</th>
+            <th style="width:15%">Channel</th>
+            <th style="width:15%">Command</th>
+            <th style="width:50%">Date</th>
           </tr>
         </thead>
         <tbody>
@@ -36,15 +36,15 @@
 <script type="text/javascript">
   $(function () {
     
-    var table = $('.yajra-datatable').DataTable({
+    var table = $('#command_tbl').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('command-list') }}",
+        ajax: '{!! route('command-list') !!}',
         columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'channel', name: 'device_id'},
-            {data: 'command', name: 'device_state'},
-            {data: 'date', name: 'entry_date'},
+            {data: 'id', name: 'id'},
+            {data: 'device_id', name: 'device_id'},
+            {data: 'command', name: 'command'},
+            {data: 'entry_date', name: 'entry_date'},
         ]
     });
     

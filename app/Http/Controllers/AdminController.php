@@ -12,18 +12,31 @@ class AdminController extends Controller
     //
 
     public function index(Request $request) {
-        if ($request->ajax()) {
-            $data = Commands::latest()->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }      
+        // if ($request->ajax()) {
+        //     $data = Commands::latest()->get();
+        //     return Datatables::of($data)
+        //         ->addIndexColumn()
+        //         ->addColumn('action', function($row){
+        //             $btn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+        //             return $btn;
+        //         })
+        //         ->rawColumns(['action'])
+        //         ->make(true);
+        // }
         return view('admin.index');
+    }
+
+    public function commands()
+    {
+        // die('11111111');        
+        $data = Commands::latest();
+        return Datatables::of($data)
+                ->addColumn('command', function($row){
+                    $command = $row->device_state ? "On" : "Off";
+                    return $command;
+                })
+                ->rawColumns(['command'])
+                ->make(true);
     }
 
     public function system_on_off_time() {

@@ -22,7 +22,8 @@ Route::get('/why-do-we-do-this', [HomeController::class, 'why_do_we_de_this']);
 Route::get('/other-christmas-fun', [HomeController::class, 'other_christmas_fun']);
 Route::get('/send-us-an-email', [HomeController::class, 'send_us_an_email']);
 
-Route::get('/admin', [AdminController::class, 'index'])->name('command-list');
+Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/get-commands', [AdminController::class, 'commands'])->name('command-list');
 Route::get('/admin/system-on-off-time', [AdminController::class, 'system_on_off_time']);
 Route::get('/admin/setting-time-schedule', [AdminController::class, 'setting_time_schedule']);
 

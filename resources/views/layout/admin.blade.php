@@ -14,8 +14,10 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ url('images/favicon/favicon.ico') }}">
     <link rel="manifest" href="/manifest.json">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="{{ url('css/custom.css') }}" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="{{ url('css/custom.css') }}" media="screen"/>    
 
     <title>Internet Controlled Christmas Lights :: MKELights.com</title>
 
