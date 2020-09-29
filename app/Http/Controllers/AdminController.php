@@ -46,10 +46,6 @@ class AdminController extends Controller
         return view('admin.setting-time-schedule', ['schedule_on_time'=>$schedule_on_time, 'schedule_off_time'=>$schedule_off_time]);
     }
 
-    public function view_all_commands() {
-        return view('admin.view-all-commands');
-    }
-
     public function set_system_onoff_time(Request $request) {
         $on_dt = $request->on_dt;
         $off_dt = $request->off_dt;
