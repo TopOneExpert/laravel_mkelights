@@ -66,8 +66,6 @@ class AdminController extends Controller
         $on_dt = $request->on_dt;
         $off_dt = $request->off_dt;
 
-        die($on_dt);
-
         if ($on_dt != null) {
             TimeConfigure::where('config_type', '=', 'schedule_on_time')
                     ->update(['config_value'=>$on_dt]);
