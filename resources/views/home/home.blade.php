@@ -298,7 +298,7 @@
 @endsection
 
 @push('script')
-<script src="{{ url('../node_modules/socket.io-client/dist/socket.io.js') }}"></script>
+<script src="{{ url('node_modules/socket.io-client/dist/socket.io.js') }}"></script>
 <script>
 	var socket = io.connect( 'https://mkelights.com:8080/' );
 	var controlStatusElement = $('.control-status');
