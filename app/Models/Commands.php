@@ -11,7 +11,7 @@ class Commands extends Model
 
     protected $table = 'tbl_commands';
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'id', 'device_id', 'device_state', 'entry_date', 'status',

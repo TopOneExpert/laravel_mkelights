@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\TimeConfigure;
+use App\Models\Commands;
 
 class HomeController extends Controller
 {
@@ -180,5 +181,24 @@ class HomeController extends Controller
         /* Send the message using mail() function */
         mail($myemail, $subject, $message);
         return ['msg' => 'Send mail success!'];
+    }
+
+    public function save_command(Request $request)
+    {
+        $channel = $request->channel;
+        $handle = $request->handle;
+
+        $command = new Commands;
+        
+        $command->device_id = $channel;
+        if ($handle == "on") {
+            $command->device_state = 1;    
+        } else {
+            $command->device_state = 0;    
+        }
+        
+        $command->entry_date = date("Y-m-d h:i:s");
+
+        $command->save();
     }
 }

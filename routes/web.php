@@ -22,6 +22,7 @@ Route::get('/why-do-we-do-this', [HomeController::class, 'why_do_we_de_this']);
 Route::get('/other-christmas-fun', [HomeController::class, 'other_christmas_fun']);
 Route::get('/send-us-an-email', [HomeController::class, 'send_us_an_email']);
 
+Route::post('/save-command', [HomeController::class, 'save_command']);
 Route::post('/send-email', [HomeController::class, 'send_email']);
 
 Route::get('/admin', [AdminController::class, 'index']);
