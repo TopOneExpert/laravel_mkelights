@@ -7,8 +7,6 @@
 <div class="right_side_wrapper--wide">
 	<div class="page-text-wrapper">
 		<div class="page-text-inner-wrapper">
-      <span style="font-weight:bold">Setting All lights On/Off Schedule Time</span>
-      <p>The all lights will be turned on or off schedule time.</p>
       <table class="table table-bordered yajra-datatable" id="command_tbl">
         <thead>
           <tr>

@@ -9,11 +9,71 @@ use App\Models\TimeConfigure;
 class HomeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
     public function get_time_settings() {
         $startTime_config = TimeConfigure::where('config_type', 'start_time')->first();
         $start_time = $startTime_config['config_value'];
@@ -80,69 +140,45 @@ class HomeController extends Controller
         return view('home.send-us-an-email', ['data' => $data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function send_email(Request $request)
     {
-        //
-    }
+        $myemail  = "dmbdev800@gmail.com";
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        /* Check all form inputs using check_input function */
+        $yourname = $request->yourname;
+        $email = $request->email;
+        $comments = $request->comments;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        /* If e-mail is not valid show error message */
+        if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $email))
+        {
+            return ['msg' => "E-mail address not valid"];
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        /* If URL is not valid set $website to empty */
+        // if (!preg_match("/^(https?:\/\/+[\w\-]+\.[\w\-]+)/i", $website))
+        // {
+        //     $website = '';
+        // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        /* Let's prepare the message for the e-mail */
+        $subject = "You've Received Fan Mail!";
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $message = "You have fanmail!
+
+        Your contact form has been submitted by:
+
+        Name: $yourname
+        E-mail: $email
+
+        Comments:
+        $comments
+
+        End of message
+        ";
+
+        /* Send the message using mail() function */
+        mail($myemail, $subject, $message);
+        return ['msg' => 'Send mail success!'];
     }
 }
