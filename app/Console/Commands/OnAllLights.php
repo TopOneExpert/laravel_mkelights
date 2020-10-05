@@ -39,7 +39,7 @@ class OnAllLights extends Command
      */
     public function handle()
     {
-        $client = new Client(new Version1X('https://mkelights.com:8080/'));
+        $client = new Client(new Version1X('//localhost:8080/'));
 
         $client->initialize();
         
