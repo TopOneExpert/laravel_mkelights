@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function commands()
     {
         $data = Commands::latest();
-        return Datatables::of($data)
+        return DataTables::of($data)
             ->addColumn('command', function ($row) {
                 $command = $row->device_state ? "On" : "Off";
                 return $command;
