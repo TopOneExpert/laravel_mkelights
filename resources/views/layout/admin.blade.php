@@ -17,7 +17,8 @@
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="{{ url('css/custom.css') }}" media="screen"/>    
+    <link rel="stylesheet" type="text/css" href="{{ url('css/custom.css') }}" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="{{ url('css/toastr.css') }}"/>
 
     <title>Internet Controlled Christmas Lights :: MKELights.com</title>
 
@@ -61,6 +62,7 @@
   </body>
   <script src="{{ url('js/jquery.min.js') }}" type="text/javascript"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11765413-9"></script>
+  <script src="{{ url('js/toastr.js') }}" type="text/javascript"></script>
 
   <script>
     (function(d, s, id) {

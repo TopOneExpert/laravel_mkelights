@@ -33,7 +33,11 @@
           _token: "{{csrf_token()}}",
         },
         success: function(result) {          
+          toastr.success('Success settings!');
           console.log(result);
+        },
+        error: function(result) {
+          toastr.error('Failed settings!');
         }
       })
     });

@@ -31,8 +31,12 @@
           off_dt: $('#off_dt').val(),
           _token: "{{csrf_token()}}",
         },
-        success: function(result) {          
+        success: function(result) {
+          toastr.success('Success settings!');
           console.log(result);
+        },
+        error: function(result) {
+          toastr.error('Failed settings!');
         }
       })
     });
