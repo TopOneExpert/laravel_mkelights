@@ -25,15 +25,12 @@ Route::get('/send-us-an-email', [HomeController::class, 'send_us_an_email']);
 Route::post('/save-command', [HomeController::class, 'save_command']);
 Route::post('/send-email', [HomeController::class, 'send_email']);
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/get-commands', [AdminController::class, 'commands'])->name('command-list');
-Route::get('/admin/system-on-off-time', [AdminController::class, 'system_on_off_time']);
-Route::get('/admin/setting-time-schedule', [AdminController::class, 'setting_time_schedule']);
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/get-commands', [AdminController::class, 'commands'])->name('command-list');
+    Route::get('/admin/system-on-off-time', [AdminController::class, 'system_on_off_time']);
+    Route::get('/admin/setting-time-schedule', [AdminController::class, 'setting_time_schedule']);
 
-Route::post('/admin/set-system-onoff-time', [AdminController::class, 'set_system_onoff_time']);
-Route::post('/admin/set-schedule-onoff-time', [AdminController::class, 'set_schedule_onoff_time']);
-
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    Route::post('/admin/set-system-onoff-time', [AdminController::class, 'set_system_onoff_time']);
+    Route::post('/admin/set-schedule-onoff-time', [AdminController::class, 'set_schedule_onoff_time']);
+});
