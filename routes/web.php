@@ -33,3 +33,7 @@ Route::get('/admin/setting-time-schedule', [AdminController::class, 'setting_tim
 Route::post('/admin/set-system-onoff-time', [AdminController::class, 'set_system_onoff_time']);
 Route::post('/admin/set-schedule-onoff-time', [AdminController::class, 'set_schedule_onoff_time']);
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
