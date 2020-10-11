@@ -50,7 +50,7 @@
       <ul class="menu">
         <li><a href="/admin">View All Commands</a></li>
         <li><a href="/admin/system-on-off-time">System On/Off Time</a></li>
-        <li><a href="/admin/setting-time-schedule">Setting Time Schedule</a></li>        
+        <li><a href="/admin/setting-time-schedule">All On / All Off Commands</a></li>        
       </ul>
       <ul class="innermenu">
         <li><a href="javascript:;">Thanks for the fun! See you next year!</a></li>

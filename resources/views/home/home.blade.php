@@ -334,5 +334,9 @@
 		socket.on('response ready', function(msg) {
 			controlStatusElement.html(msg);
 		});
+
+		socket.on('response wait', function(msg) {
+			controlStatusElement.html(msg);
+		});
 	</script>
 	@endpush
