@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.home')
 
 @section('content')
 <div class="content_conf">
@@ -313,22 +313,28 @@
 		});
 
 		function handleLight(channel, handle) {
-			console.log("test light button", channel, 'light_' + handle);
-			socket.emit('light_' + handle, channel);
-			controlStatusElement.html("Wait...");
+			var sysStatus = <?php echo $data['opened'] ?>;
 
-			$.ajax({
-				type: 'POST',
-				url: "{{ url('/save-command') }}",
-				data: {
-					channel: channel,
-					handle: handle,
-					_token: "{{csrf_token()}}",
-				},
-				success: function(result) {
-					console.log(result);
-				}
-			})
+			if (sysStatus === 1) {
+				console.log("test light button", channel, 'light_' + handle);
+				socket.emit('light_' + handle, channel);
+				controlStatusElement.html("Wait...");
+
+				$.ajax({
+					type: 'POST',
+					url: "{{ url('/save-command') }}",
+					data: {
+						channel: channel,
+						handle: handle,
+						_token: "{{csrf_token()}}",
+					},
+					success: function(result) {
+						console.log(result);
+					}
+				})
+			} else {
+				controlStatusElement.html("Offline - Check back later!");
+			}			
 		}
 
 		socket.on('response ready', function(msg) {

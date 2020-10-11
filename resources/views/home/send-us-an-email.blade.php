@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.home')
 
 @section('content')
 <div class="left_side_wrapper--narrow">

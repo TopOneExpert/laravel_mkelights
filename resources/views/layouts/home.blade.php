@@ -127,23 +127,6 @@
     }
     setTimeout("titler()",15000);
 
-    // $( document ).ready(function() {
-    //     $('.force-mobile-link').on('click', (function (e) {
-    //         e.preventDefault();
-
-    //         var expires = "";
-    //         var name = 'forceDesktop';
-    //         var value = '1';
-    //         var date = new Date();
-
-    //         date.setTime(date.getTime() + (24*60*60*1000));
-    //         expires = "; expires=" + date.toUTCString();
-
-    //         document.cookie = name + "=" + value + expires + "; path=/";
-    //         location.reload();
-    //     }));
-    // });
-
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments)};
     gtag('js', new Date());
