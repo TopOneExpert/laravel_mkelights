@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use ElephantIO\Client;
-use ElephantIO\Engine\SocketIO\Version1X;
+use ElephantIO\Engine\SocketIO\Version2X;
 
 class OnAllLights extends Command
 {
@@ -39,10 +39,10 @@ class OnAllLights extends Command
      */
     public function handle()
     {
-        $client = new Client(new Version1X('//mkelights.com:8080/'));
+        $client = new Client(new Version2X('//mkelights.com:8080/'));
 
         $client->initialize();
-        
+
         for($channel = 1; $channel <= 16; $channel++) {
             $client->emit('light_on', ['channel' => $channel]);
         }
