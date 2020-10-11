@@ -43,9 +43,8 @@ class OnAllLights extends Command
 
         $client->initialize();
 
-        for($channel = 1; $channel <= 16; $channel++) {
-            $client->emit('light_on', ['channel' => $channel]);
-        }
+        $client->emit('all_light_on', ['message' => 'all light on']);
+
         $client->close();
     }
 }

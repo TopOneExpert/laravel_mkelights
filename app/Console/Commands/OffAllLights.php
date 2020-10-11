@@ -42,10 +42,9 @@ class OffAllLights extends Command
         $client = new Client(new Version2X('https://mkelights.com:8080/'));
 
         $client->initialize();
-        // send message to connected clients
-        for($channel = 1; $channel <= 16; $channel++) {
-            $client->emit('light_on', ['channel' => $channel]);
-        }
+
+        $client->emit('all_light_off', ['message' => 'all light off']);
+
         $client->close();
     }
 }
