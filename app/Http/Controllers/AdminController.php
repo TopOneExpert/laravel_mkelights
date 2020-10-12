@@ -41,13 +41,13 @@ class AdminController extends Controller
 
     public function setting_time_schedule()
     {
-        $time_conf = TimeConfigure::where('config_type', '=', 'schedule_on_time')->first();
-        $schedule_on_time = $time_conf['config_value'];
+        $schedule_on_times = TimeConfigure::where('config_type', '=', 'schedule_on_time')->get();
+        //$schedule_on_times = $time_conf['config_value'];
 
-        $time_conf = TimeConfigure::where('config_type', '=', 'schedule_off_time')->first();
-        $schedule_off_time = $time_conf['config_value'];
+        $schedule_off_times = TimeConfigure::where('config_type', '=', 'schedule_off_time')->get();
+        //$schedule_off_times = $time_conf['config_value'];
 
-        return view('admin.setting-time-schedule', ['schedule_on_time' => $schedule_on_time, 'schedule_off_time' => $schedule_off_time]);
+        return view('admin.setting-time-schedule', ['schedule_on_times' => $schedule_on_times, 'schedule_off_times' => $schedule_off_times]);
     }
 
     public function set_system_onoff_time(Request $request)
@@ -78,6 +78,28 @@ class AdminController extends Controller
 
         if ($off_dt != null) {
             TimeConfigure::where('config_type', '=', 'schedule_off_time')
+                ->update(['config_value' => $off_dt]);
+        }
+    }
+
+    public function set_schedule_on_time(Request $request)
+    {
+        $id = $request->id;
+        $on_dt = $request->on_dt;
+
+        if ($on_dt != null) {
+            TimeConfigure::where('id', '=', $id)
+                ->update(['config_value' => $on_dt]);
+        }
+    }
+
+    public function set_schedule_off_time(Request $request)
+    {
+        $id = $request->id;
+        $off_dt = $request->off_dt;
+
+        if ($off_dt != null) {
+            TimeConfigure::where('id', '=', $id)
                 ->update(['config_value' => $off_dt]);
         }
     }
