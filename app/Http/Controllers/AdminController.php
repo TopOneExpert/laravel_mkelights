@@ -31,12 +31,16 @@ class AdminController extends Controller
     public function system_on_off_time()
     {
         $start_time_conf = TimeConfigure::where('config_type', '=', 'start_time')->first();
-        $start_time = $start_time_conf['config_value'];
+
+        $start_time = date("H:i:s", strtotime($start_time_conf['config_value']));
+        $start_date = date("Y-m-d", strtotime($start_time_conf['config_value']));
 
         $end_time_conf = TimeConfigure::where('config_type', '=', 'end_time')->first();
-        $end_time = $end_time_conf['config_value'];
 
-        return view('admin.system-on-off-time', ['start_time' => $start_time, 'end_time' => $end_time]);
+        $end_time = date("H:i:s", strtotime($end_time_conf['config_value']));
+        $end_date = date("Y-m-d", strtotime($end_time_conf['config_value']));
+
+        return view('admin.system-on-off-time', ['start_time' => $start_time, 'start_date' => $start_date, 'end_time' => $end_time, 'end_date' => $end_date]);
     }
 
     public function setting_time_schedule()
