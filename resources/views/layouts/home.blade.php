@@ -47,7 +47,7 @@
             @if ($data['opened'] == 1)
             <span class="status status__online"> ONLINE </span>
             @else
-            <span class="status status__offline"> OFFLINE </span>
+            <span class="status status__offline"> {{$data['offlineText']}} </span>
             @endif            
           </div>
         </div>

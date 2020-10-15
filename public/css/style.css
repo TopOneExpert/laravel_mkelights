@@ -80,7 +80,7 @@
   .status-wrapper {
     height: 100px;
     line-height: 30px;
-    padding: 35px 40px;
+    padding: 35px 0px;
     display: inline-block;
     float: right;
     color: #fff;
@@ -340,4 +340,3 @@
     text-align: left; }
   
   /*# sourceMappingURL=style.css.map */
-  
