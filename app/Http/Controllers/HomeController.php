@@ -143,7 +143,7 @@ class HomeController extends Controller
             else
             {
                 $opened = 0;
-                $offlineText = "Offline - Check back at $display_start_hour CST!";
+                $offlineText = "Offline"; // - Check back at $display_start_hour CST!";
 
                 if ($startTimestamp < $endTimestamp && $currentTimestamp < $startTimestamp)
                     $stateChangeCountdown = $startTimestamp - $currentTimestamp;
@@ -158,9 +158,9 @@ class HomeController extends Controller
             $opened = 0;
 
             if ($currentTimestamp < $startDate)
-                $offlineText = "Offline - Check back on ". date("Y-m-d", $startDate) ;
+                $offlineText = "Offline"; // - Check back on ". date("Y-m-d", $startDate) ;
             elseif ($currentTimestamp > $startDate)
-                $offlineText = "Offline - Check back next year!" ;
+                $offlineText = "Offline"; // - Check back next year!" ;
         }
 
         $data['opened'] = $opened;
