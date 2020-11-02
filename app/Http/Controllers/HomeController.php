@@ -230,7 +230,7 @@ class HomeController extends Controller
             $mail->Host = 'smtp.gmail.com';							// Specify main and backup SMTP servers
             $mail->Username = 'dmbdev800@gmail.com';                // SMTP username
             $mail->password = 'DmitriyKiller2020';
-            $mail->SMTPSecure = 'tls';                              // Enable TLS encryption, `ssl` also accepted
+            $mail->SMTPSecure = 'ssl';                              // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                      // TCP port to connect to
 
             //Recipients
