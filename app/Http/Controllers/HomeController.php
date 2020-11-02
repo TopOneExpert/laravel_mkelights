@@ -226,9 +226,10 @@ class HomeController extends Controller
             // Server settings
             $mail->SMTPDebug = 0;                                	// Enable verbose debug output
             $mail->isSMTP();                                     	// Set mailer to use SMTP
-            $mail->SMTPAuth = false;                                // use smpt auth
+            $mail->SMTPAuth = true;                                // use smpt auth
             $mail->Host = 'smtp.gmail.com';							// Specify main and backup SMTP servers
             $mail->Username = 'dmbdev800@gmail.com';                // SMTP username
+            $mail->password = 'DmitriyKiller2020';
             $mail->SMTPSecure = 'tls';                              // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                      // TCP port to connect to
 
