@@ -243,7 +243,7 @@ class HomeController extends Controller
 
             return ['msg' => 'Send mail success!'];
         } catch (Exception $e) {
-            return ['msg' => $e];
+            return ['msg' => $e->getMessage()];
         }
     }
 
