@@ -12,6 +12,10 @@ use DateTimeZone;
 
 use Agent;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 class HomeController extends Controller
 {
     public function __construct()
@@ -212,38 +216,37 @@ class HomeController extends Controller
 
     public function send_email(Request $request)
     {
-        $myemail  = "dmbdev800@gmail.com";
-
-        /* Check all form inputs using check_input function */
         $yourname = $request->yourname;
         $address = $request->address;
         $comments = $request->comments;
 
-        /* If e-mail is not valid show error message */
-        /*if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $address))
-        {
-            return ['msg' => "E-mail address not valid"];
-        }*/
+        require 'vendor/autoload.php';													// load Composer's autoloader
 
-        /* Let's prepare the message for the e-mail */
-        $subject = "You've Received Fan Mail!";
+        $mail = new PHPMailer(true);                            // Passing `true` enables exceptions
 
-        $message = "You have fanmail!
+        try {
+            // Server settings
+            $mail->SMTPDebug = 0;                                	// Enable verbose debug output
+            $mail->isSMTP();                                     	// Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';							// Specify main and backup SMTP servers
+            $mail->Username = 'dmbdev800@gmail.com';                            // SMTP username
+            $mail->SMTPSecure = 'tls';                              // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                      // TCP port to connect to
 
-        Your contact form has been submitted by:
+            //Recipients
+            $mail->setFrom($address, $yourname);
 
-        Name: $yourname
-        E-mail: $address
+            //Content
+            $mail->isHTML(true);
+            $mail->Subject = 'Contact';
+            $mail->Body    = $comments;
 
-        Comments:
-        $comments
+            $mail->send();
 
-        End of message
-        ";
-
-        /* Send the message using mail() function */
-        mail($myemail, $subject, $message);
-        return ['msg' => 'Send mail success!'];
+            return ['msg' => 'Send mail success!'];
+        } catch (Exception $e) {
+            return ['msg' => 'Send mail failed!'];
+        }
     }
 
     public function save_command(Request $request)
