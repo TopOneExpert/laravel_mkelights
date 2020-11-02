@@ -220,36 +220,26 @@ class HomeController extends Controller
         $address = $request->address;
         $comments = $request->comments;
 
-        $mail = new PHPMailer(true);                            // Passing `true` enables exceptions
+        $mail = new PHPMailer;
+
+        $mail->From = $address;
+        $mail->FromName = $yourname;
+
+        $mail->addAddress("dmbdev800@gmail.com", "Mike");
+
+        $mail->isHTML(true);
+
+        $mail->Subject = "Subject Text";
+        $mail->Body = "<i>Mail body in HTML</i>";
+        $mail->AltBody = "This is the plain text version of the email content";
 
         try {
-            // Server settings
-            $mail->SMTPDebug = 0;                                	// Enable verbose debug output
-            $mail->isSMTP();                                     	// Set mailer to use SMTP
-            $mail->SMTPAuth = true;                                // use smpt auth
-            $mail->Host = 'smtp.gmail.com';							// Specify main and backup SMTP servers
-            $mail->Username = 'dmbdev800@gmail.com';                // SMTP username
-            $mail->password = 'DmitriyKiller2020';
-            $mail->SMTPSecure = 'ssl';                              // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                      // TCP port to connect to
-
-            //Recipients
-            $mail->setFrom($address, $yourname);
-
-            $mail->addAddress("dmbdev800@gmail.com", "Mike");
-
-
-            //Content
-            $mail->isHTML(true);
-            $mail->Subject = 'Contact';
-            $mail->Body    = $comments;
-
             $mail->send();
-
-            return ['msg' => 'Send mail success!'];
+            echo "Message has been sent successfully";
         } catch (Exception $e) {
-            return ['msg' => $e->getMessage()];
+            echo "Mailer Error: " . $mail->ErrorInfo;
         }
+
     }
 
     public function save_command(Request $request)
