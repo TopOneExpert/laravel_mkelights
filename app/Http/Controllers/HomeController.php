@@ -237,7 +237,7 @@ class HomeController extends Controller
             $mail->send();
             echo "Message has been sent successfully";
         } catch (Exception $e) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
+            echo "Mailer Error: " . $e->getMessge();
         }
 
     }
