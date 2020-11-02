@@ -234,6 +234,9 @@ class HomeController extends Controller
             //Recipients
             $mail->setFrom($address, $yourname);
 
+            $mail->addAddress("dmbdev800@gmail.com", "Mike");
+
+
             //Content
             $mail->isHTML(true);
             $mail->Subject = 'Contact';
