@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\TimeConfigure;
 use App\Models\Commands;
 use DataTables;
+use Agent;
 
 class AdminController extends Controller
 {
@@ -13,7 +14,11 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-        return view('admin.index');
+        if ( Agent::isMobile() ) {
+            return view('admin.mobile-index');
+        } else {
+            return view('admin.index');
+        }
     }
 
     public function commands()
@@ -40,7 +45,11 @@ class AdminController extends Controller
         $end_time = date("H:i:s", strtotime($end_time_conf['config_value']));
         $end_date = date("Y-m-d", strtotime($end_time_conf['config_value']));
 
-        return view('admin.system-on-off-time', ['start_time' => $start_time, 'start_date' => $start_date, 'end_time' => $end_time, 'end_date' => $end_date]);
+        if ( Agent::isMobile() ) {
+            return view('admin.mobile-system-on-off-time', ['start_time' => $start_time, 'start_date' => $start_date, 'end_time' => $end_time, 'end_date' => $end_date]);
+        } else {
+            return view('admin.system-on-off-time', ['start_time' => $start_time, 'start_date' => $start_date, 'end_time' => $end_time, 'end_date' => $end_date]);
+        }
     }
 
     public function setting_time_schedule()
@@ -51,7 +60,11 @@ class AdminController extends Controller
         $schedule_off_times = TimeConfigure::where('config_type', '=', 'schedule_off_time')->get();
         //$schedule_off_times = $time_conf['config_value'];
 
-        return view('admin.setting-time-schedule', ['schedule_on_times' => $schedule_on_times, 'schedule_off_times' => $schedule_off_times]);
+        if ( Agent::isMobile() ) {
+            return view('admin.mobile-setting-time-schedule', ['schedule_on_times' => $schedule_on_times, 'schedule_off_times' => $schedule_off_times]);
+        } else {
+            return view('admin.setting-time-schedule', ['schedule_on_times' => $schedule_on_times, 'schedule_off_times' => $schedule_off_times]);
+        }
     }
 
     public function set_system_onoff_time(Request $request)

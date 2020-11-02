@@ -4,11 +4,11 @@
 <div class="content_conf">
 	<div class="left_side_wrapper custom_side">
 		<div class="stream_wrapper customstream mr-3">
-			<iframe id="button_iframe" src="{{ url('cam1.html') }}" width="453" height="339" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
+			<iframe id="video1" src="{{ url('cam1.html') }}" width="453" height="339" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
 			<span style="color:white">Camera 1</span>
 		</div>
 		<div class="stream_wrapper customstream">
-			<iframe id="button_iframe" src="{{ url('cam2.html') }}" width="453" height="339" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
+			<iframe id="video2" src="{{ url('cam2.html') }}" width="453" height="339" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
 			<span style="color:white">Camera 2</span>
 		</div>
 		<div class="buttons-wrapper">

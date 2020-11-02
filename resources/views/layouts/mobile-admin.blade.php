@@ -36,40 +36,62 @@
   </head>
   <body class="antialiased">
     <div id="fb-root"></div>
-    <div class="wrapper">
-      <div class="header">
-        <div class="header-inside">
-          <div class="logo">
-            <img src="{{ url('images/mkelights_logo.png') }}" alt="">
-          </div>
-          <div class="status-wrapper">
-            SYSTEM STATUS: 
-            @if ($data['opened'] == 1)
-            <span class="status status__online"> ONLINE </span>
-            @else
-            <span class="status status__offline"> {{$data['offlineText']}} </span>
-            @endif            
-          </div>
+    <div class="mobile-wrapper">
+        <div class="mobile-header">
+        	<div class="header-inside">
+        		<div class="logo">
+        			<img src="{{ url('images/mkelights_logo.png') }}" alt="">
+        		</div>
+        	</div>
+        </div> <!-- end #header -->
+        <div class="time_wrapper">
+            <div class="current-time">
+                <a href="/admin">View All Commands</a>
+            </div>
+            <div class="current-time">
+                <a href="/admin/system-on-off-time">System On/Off Date and Time</a>
+            </div>
+            <div class="current-time">
+                <a href="/admin/setting-time-schedule">All On / All Off Commands</a>
+            </div>
         </div>
 
-        <ul class="menu">
-          <li><a href="/home">Internet Controlled Christmas Lights</a></li>
-          <li><a href="/how-does-this-work">How Does This Work?</a></li>
-          <li><a href="/why-do-we-do-this">Why Do We Do This?</a></li>
-          <li><a href="/other-christmas-fun">Other Christmas Fun</a></li>
-          <li><a href="/send-us-an-email">Send Us An Email</a></li>
-        </ul>
-        <ul class="innermenu">
-          <li><a href="javascript:;">Thanks for the fun! See you next year!</a></li>
-        </ul>
-      </div>
-      <div class="wrapper">
-        @yield('content')
-      </div>
+        <div class="content_conf">
+            @yield('content')
+        </div>
     </div>
   </body>
+
   <script src="{{ url('js/jquery.min.js') }}" type="text/javascript"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11765413-9"></script>
+  <!-- script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script -->
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('.force-mobile-link').on('click', (function (e) {
+            e.preventDefault();
+            var expires = "";
+            var name = 'forceDesktop';
+            var value = '1';
+            var date = new Date();
+
+            date.setTime(date.getTime() + (24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+
+            document.cookie = name + "=" + value + expires + "; path=/";
+            location.reload();
+        }));
+    });
+  </script>
+
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments)};
+    gtag('js', new Date());
+
+    gtag('config', 'UA-11765413-9');
+  </script>
 
   <script>
     (function(d, s, id) {

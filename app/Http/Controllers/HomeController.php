@@ -10,8 +10,14 @@ use App\Models\Commands;
 use DateTime;
 use DateTimeZone;
 
+use Agent;
+
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        //$this->layout = Agent::isMobile() ? 'layouts.mobileHome' : 'layouts.home';
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -173,7 +179,11 @@ class HomeController extends Controller
     public function index() {
         $data = $this->get_time_settings();
 
-        return view('home.home', ['data' => $data]);
+        if ( Agent::isMobile() ) {
+            return view('home.mobile-home', ['data' => $data]);
+        } else {
+            return view('home.home', ['data' => $data]);
+        }
     }
 
     public function how_does_this_work () {
