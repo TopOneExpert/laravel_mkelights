@@ -220,12 +220,28 @@ class HomeController extends Controller
         $address = $request->address;
         $comments = $request->comments;
 
-        $mail = new PHPMailer;
+        $mail = new PHPMailer(true);
+
+        //Enable SMTP debugging.
+        $mail->SMTPDebug = 3;
+        //Set PHPMailer to use SMTP.
+        $mail->isSMTP();
+        //Set SMTP host name
+        $mail->Host = "smtp.gmail.com";
+        //Set this to true if SMTP host requires authentication to send email
+        $mail->SMTPAuth = true;
+        //Provide username and password
+        $mail->Username = "dmbdev800@gmail.com";
+        $mail->Password = "DmitriyKiller2020";
+        //If SMTP requires TLS encryption then set it
+        $mail->SMTPSecure = "tls";
+        //Set TCP port to connect to
+        $mail->Port = 587;
 
         $mail->From = $address;
         $mail->FromName = $yourname;
 
-        $mail->addAddress("dmbdev800@gmail.com", "Mike");
+        $mail->addAddress("dmbdev800@gmail.com", "Dmitriy");
 
         $mail->isHTML(true);
 
@@ -235,9 +251,9 @@ class HomeController extends Controller
 
         try {
             $mail->send();
-            echo "Message has been sent successfully";
+            return ['msg' => 'Message has been sent successfully'];
         } catch (Exception $e) {
-            echo "Mailer Error: " . $e->getMessge();
+            return ['msg' => "Mailer Error: " . $e->getMessge()];
         }
 
     }
