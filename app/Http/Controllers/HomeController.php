@@ -216,20 +216,14 @@ class HomeController extends Controller
 
         /* Check all form inputs using check_input function */
         $yourname = $request->yourname;
-        $email = $request->email;
+        $address = $request->address;
         $comments = $request->comments;
 
         /* If e-mail is not valid show error message */
-        if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $email))
+        /*if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $address))
         {
             return ['msg' => "E-mail address not valid"];
-        }
-
-        /* If URL is not valid set $website to empty */
-        // if (!preg_match("/^(https?:\/\/+[\w\-]+\.[\w\-]+)/i", $website))
-        // {
-        //     $website = '';
-        // }
+        }*/
 
         /* Let's prepare the message for the e-mail */
         $subject = "You've Received Fan Mail!";
@@ -239,7 +233,7 @@ class HomeController extends Controller
         Your contact form has been submitted by:
 
         Name: $yourname
-        E-mail: $email
+        E-mail: $address
 
         Comments:
         $comments

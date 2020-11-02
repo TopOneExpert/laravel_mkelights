@@ -24,7 +24,7 @@
       <p>If you'd like to reach out and contact us, please use the form below. We would love to hear from you and appreciate any feedback/questions!</p>
       <p>
         <b>Your Name:</b> <input type="text" id="yourname" /><br />
-        <b>Your E-mail:</b> <input type="text" id="email" /><br />
+        <b>Your E-mail:</b> <input type="text" id="address" /><br />
       </p>
       <p>
         <b>Your comments:</b><br />
@@ -45,7 +45,7 @@
         url: "{{ url('/send-email') }}",
         data: {
           yourname: $('#yourname').val(),
-          email: $('#email').val(),
+          address: $('#address').val(),
           comments: $('#comments').val(),
           _token: "{{csrf_token()}}",
         },
