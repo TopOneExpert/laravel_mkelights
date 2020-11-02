@@ -255,7 +255,6 @@ class HomeController extends Controller
         } catch (Exception $e) {
             return ['msg' => "Mailer Error: " . $e->getMessge()];
         }
-
     }
 
     public function save_command(Request $request)
