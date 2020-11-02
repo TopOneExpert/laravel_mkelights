@@ -220,8 +220,6 @@ class HomeController extends Controller
         $address = $request->address;
         $comments = $request->comments;
 
-        require 'vendor/autoload.php';													// load Composer's autoloader
-
         $mail = new PHPMailer(true);                            // Passing `true` enables exceptions
 
         try {
