@@ -12,10 +12,12 @@
     <meta name="theme-color" content="#ffffff">
     <meta property="fb:admins" content="{10201733674216078}"/>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="{{ url('images/favicon/favicon.ico') }}">
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}" media="screen"/>
     <link rel="stylesheet" type="text/css" href="{{ url('css/custom.css') }}" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="{{ url('css/toastr.css') }}"/>
 
     <title>Internet Controlled Christmas Lights :: MKELights.com</title>
 
@@ -54,6 +56,9 @@
             <div class="current-time">
                 <a href="/admin/setting-time-schedule">All On / All Off Commands</a>
             </div>
+            <div class="current-time">
+              <a href="/admin/setting-schedule-page">Set schedule for everyday</a>
+            </div>
         </div>
 
         <div class="content_conf">
@@ -65,6 +70,7 @@
   <script src="{{ url('js/jquery.min.js') }}" type="text/javascript"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11765413-9"></script>
   <!-- script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script -->
+  <script src="{{ url('js/toastr.js') }}" type="text/javascript"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {

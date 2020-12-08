@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Updated for 2019! Control our Christmas lights every night during the month of December!"/>
+    <meta name="description" content="Control our Christmas lights every night during the month of December!"/>
     <meta name="keywords" content="control, lights, christmas,santa, christmas lights"/>
     <meta name="author" content=""/>
     <meta property='og:image' content="{{ url('images/sign.jpg') }}"/>
@@ -60,7 +60,7 @@
           <li><a href="/send-us-an-email">Send Us An Email</a></li>
         </ul>
         <ul class="innermenu">
-          <li><a href="javascript:;">Thanks for the fun! See you next year!</a></li>
+          <li><a href="javascript:;">Let's do this! Control our lights every night 5pm-10pm CST! Woooooo!</a></li>
         </ul>
       </div>
       <div class="wrapper">

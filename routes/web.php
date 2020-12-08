@@ -36,4 +36,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('/admin/set-schedule-on-time', [AdminController::class, 'set_schedule_on_time']);
     Route::post('/admin/set-schedule-off-time', [AdminController::class, 'set_schedule_off_time']);
+
+    Route::get('/admin/setting-schedule-page', [AdminController::class, 'setting_schedule_index']);
+    Route::post('/admin/setting-schedule-page/set_schedule', [AdminController::class, 'set_schedule']);
 });

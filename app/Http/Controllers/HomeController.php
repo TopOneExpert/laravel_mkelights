@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\TimeConfigure;
 use App\Models\Commands;
+use App\Models\Schedule;
 
 use DateTime;
 use DateTimeZone;
@@ -177,6 +178,47 @@ class HomeController extends Controller
         $data['current_dt'] = date('g:ia');
         $data['offlineText'] = $offlineText;
 
+        $currentTime = date('Y-m-d H:i:s');
+        $currentTimestamp = strtotime($currentTime);
+        $currentDay = date('Y-m-d');
+        $nextDay = date('Y-m-d', strtotime(' +1 day'));
+
+        $schedules = Schedule::where('from_time', '<>', '')->get();
+        $count = count($schedules);
+        
+        $data['isShowTime'] = -1;
+        $data['tillSecond'] = 0;
+
+        for($i = 0; $i < $count; $i++) {
+            if ($i < $count - 1) {
+                $from_timestamp = strtotime($currentDay.' '.$schedules[$i]->from_time);
+                $to_timestamp = strtotime($currentDay.' '.$schedules[$i]->to_time);
+                $next_from_timestamp = strtotime($currentDay.' '.$schedules[$i + 1]->from_time);
+            } else {
+                $from_timestamp = strtotime($currentDay.' '.$schedules[$i]->from_time);
+                $to_timestamp = strtotime($currentDay.' '.$schedules[$i]->to_time);
+                $next_from_timestamp = strtotime($nextDay.' '.$schedules[0]->from_time);
+            }
+            
+            if ($i == 0 && $currentTimestamp < $from_timestamp) {
+                $data['isShowTime'] = 0;
+                $data['tillSecond'] = $from_timestamp - $currentTimestamp;
+                break;
+            }
+
+            if ($currentTimestamp >= $from_timestamp && $currentTimestamp < $to_timestamp) {
+                $data['isShowTime'] = 1;
+                $data['tillSecond'] = $to_timestamp - $currentTimestamp;
+                break;
+            }
+
+            if ($currentTimestamp >= $to_timestamp && $currentTimestamp < $next_from_timestamp) {
+                $data['isShowTime'] = 0;
+                $data['tillSecond'] = $next_from_timestamp - $currentTimestamp;
+                break;
+            }
+        }
+
         return $data;
     }
 
@@ -255,6 +297,7 @@ class HomeController extends Controller
         } catch (Exception $e) {
             return ['msg' => "Mailer Error: " . $e->getMessge()];
         }
+
     }
 
     public function save_command(Request $request)

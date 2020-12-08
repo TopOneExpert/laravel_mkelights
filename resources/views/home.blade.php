@@ -4,7 +4,7 @@
 <div class="content_conf">
 	<div class="left_side_wrapper custom_side">
 		<div class="stream_wrapper customstream mr-3">
-			<iframe id="video1" src="{{ url('cam1.html') }}" width="453" height="339" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
+			<iframe id="video1" src="{{ url('cam3.html') }}" width="453" height="339" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
 			<span style="color:white">Camera 1</span>
 		</div>
 		<div class="stream_wrapper customstream">
@@ -261,6 +261,7 @@
 													Controls ON at {{$data['display_start_hour']}} and OFF at {{$data['display_end_hour']}}
 												</div>
 												<div class="current-time">
+													Current Time: {{$data['current_dt']}} CST
 												</div>
 											</div>
 										</span>
@@ -281,9 +282,6 @@
 								</div>
 								<div class="listings">
 									<ul>
-            							<li><u>11/30/20</u> - I think we've got most of the bugs fixed. Our own cam1 system should now be functional. Thank you for your patience. :)</li>
-                                        <li><u>11/27/20</u> - I'm trying to get Cam 1's stream operating. There's issues with our encoding and thus the stream is down. Hope to get that sorted as soon as I can!</li>
-                                    	<li><u>11/26/20</u> - Lot's of behind the scenes upgrades this year. Please bear with us as we try to squash the bugs over the first few days. I also work this weekend so things may not be fixed as quickly.</li>
 										<li><u>11/11/20</u> - We are adding some new features this year. You may catch us testing some things out! :)</li>
 										<li><u>11/02/20</u> - Everyting is out of the attic! Starting to do some light repairs.</li>
 									</ul>
@@ -316,14 +314,14 @@
 			$('#countTime').html("");
 		}
 		else if (isShowTime === 1) {
-			$('#countTime').html("Now playing - Unmute CAM 1 to hear it!");
+			$('#countTime').html("Now playing");
 			setTimeout(() => {
 				window.location.reload();
 			}, tillTime * 1000);
 			
 			controlStatusElement.html("Paused until end of the snow");
 		}
-		else {
+		else (isShowTime === 0) {
 			controlStatusElement.html("Ready");
 
 			var timer = setInterval(countDownTime, 1000);
@@ -379,6 +377,7 @@
 			} else {
 				controlStatusElement.html("Offline - Check back later!");
 			}
+			
 		});
 
 		function handleLight(channel, handle) {
@@ -408,7 +407,7 @@
 					}
 					if (isShowTime === 1) {
 						isTenSecondsBeforeShowing === 0;
-						controlStatusElement.html("Paused until end of the show");
+						controlStatusElement.html("Paused until end of the snow");
 					}
 				}
 				
@@ -424,42 +423,6 @@
 		socket.on('response wait', function(msg) {
 			controlStatusElement.html(msg);
 		});
-
-		function showTime(){
-			var local_date = new Date();
-
-			var localTime = local_date.getTime();
-			var localOffset = local_date.getTimezoneOffset() * 60000;
-			var utc = localTime + localOffset;
-
-			var offset = -6;
-			var cst = utc + (3600000 * offset);
-
-			var cstTDate = new Date(cst);
-			var h = cstTDate.getHours(); 
-			var m = cstTDate.getMinutes(); 
-			var session = "AM";
-			
-			if(h == 0){
-					h = 12;
-			}
-			
-			if(h > 12){
-					h = h - 12;
-					session = "PM";
-			}
-			
-			h = (h < 10) ? "0" + h : h;
-			m = (m < 10) ? "0" + m : m;
-			
-			var serverTime = h + ":" + m + " " + session;
-
-			$('div.current-time').text("Current Time: " + serverTime + " CST")
-
-			setTimeout(showTime, 60000);
-		}
-
-		showTime();
 		
 	</script>
 	@endpush

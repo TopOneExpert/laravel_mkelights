@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TimeConfigure;
 use App\Models\Commands;
+use App\Models\Schedule;
 use DataTables;
 use Agent;
 
@@ -119,5 +120,44 @@ class AdminController extends Controller
             TimeConfigure::where('id', '=', $id)
                 ->update(['config_value' => $off_dt]);
         }
+    }
+
+    public function setting_schedule_index() {
+        $time_ranges = Schedule::all();
+        
+        foreach($time_ranges as $time_range)
+        {
+            if ($time_range->from_time) {
+                $from_time = $time_range->from_time;
+                $from_time_arr = explode(":", $from_time);
+                $time_range->from_hour = $from_time_arr[0];
+                $time_range->from_min = $from_time_arr[1];
+                $time_range->from_sec = $from_time_arr[2];
+
+                $to_time = $time_range->to_time;
+                $to_time_arr = explode(":", $to_time);
+                $time_range->to_hour = $to_time_arr[0];
+                $time_range->to_min = $to_time_arr[1];
+                $time_range->to_sec = $to_time_arr[2];
+            }
+        }
+
+        if ( Agent::isMobile() ) {
+            return view('admin.mobile-schedule', compact('time_ranges'));
+        } else {
+            return view('admin.schedule', compact('time_ranges'));
+        }
+    }
+
+    public function set_schedule(Request $request)
+    {
+        $data_lists = $request->data;
+        
+        foreach($data_lists as $data) {
+            Schedule::where('id', '=', $data['id'])
+            ->update(['from_time' => $data['from_time'], 'to_time' => $data['to_time']]);
+        }
+
+        return "true";
     }
 }

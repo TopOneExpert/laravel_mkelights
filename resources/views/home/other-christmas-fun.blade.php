@@ -23,7 +23,7 @@
 			<span style="font-weight:bold">Other Christmas Fun</span>
 			<p></p>
 			<center>
-		    -2019 Milwaukee Holiday Lights Festival-
+		    -2020 Milwaukee Holiday Lights Festival-
 		    <a href="http://www.milwaukeedowntown.com/about-us/special-events/milwaukee-holiday-lights-festival" target="blank">
 					<img src="https://www.milwaukeedowntown.com/sites/default/files/bid-events/participants/HLF-%20Logo%204.jpg" alt="Milwaukee Holiday Lights Festival" height="200" width="400">
 				</a>

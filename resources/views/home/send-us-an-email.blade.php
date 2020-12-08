@@ -23,14 +23,7 @@
       <span style="font-weight:bold">Send Us An Email</span>
       <p>If you'd like to reach out and contact us, please use the form below. We would love to hear from you and appreciate any feedback/questions!</p>
       <p>
-        <b>Your Name:</b> <input type="text" id="yourname" /><br />
-        <b>Your E-mail:</b> <input type="text" id="address" /><br />
-      </p>
-      <p>
-        <b>Your comments:</b><br />
-        <textarea id="comments" rows="10" cols="50"></textarea>
-      </p>
-      <input type="submit" id='submit' value="SendMail">
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSej-86Dvp96lEvNtAaykYFP9rCu2KNDUzRKxoburpdX67aBdg/viewform?embedded=true" width="640" height="538" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
 	</div>
 </div>
